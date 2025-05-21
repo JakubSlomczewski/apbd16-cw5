@@ -1,0 +1,79 @@
+### Dodawanie recepty
+POST http://localhost:5109/api/prescriptions
+Content-Type: application/json
+
+{
+  "date": "2025-05-11T09:00:00",
+  "dueDate": "2025-06-11T09:00:00",
+  "doctorId": 1,
+  "patient": {
+    "firstName": "Anna",
+    "lastName": "Nowak",
+    "birthDate": "1985-09-15"
+  },
+  "medicaments": [
+    { "idMedicament": 1, "dose": 2, "description": "Rano i wieczorem" },
+    { "idMedicament": 2, "dose": 1, "description": "Po posiłku" }
+  ]
+}
+
+### Pobieranie pacjenta
+GET http://localhost:5109/api/patients/1
+Accept: application/json
+
+### Za duzo lekow
+POST http://localhost:5109/api/prescriptions
+Content-Type: application/json
+
+{
+  "date": "2025-05-21T10:00:00",
+  "dueDate": "2025-06-21T10:00:00",
+  "doctorId": 1,
+  "patient": {
+    "firstName": "Test",
+    "lastName":  "Testowy",
+    "birthDate": "1990-01-01"
+  },
+  "medicaments": [
+    // wygeneruj tu 11 wpisów
+    { "idMedicament": 1, "dose": 1, "description": "" },
+    … // powtórz 11 razy
+  ]
+}
+
+### Niestniejacy lekarz
+POST http://localhost:5109/api/prescriptions
+Content-Type: application/json
+
+{
+  "date": "2025-05-21T10:00:00",
+  "dueDate": "2025-06-21T10:00:00",
+  "doctorId": 999,
+  "patient": {
+    "firstName": "Test",
+    "lastName":  "Testowy",
+    "birthDate": "1990-01-01"
+  },
+  "medicaments": [
+    { "idMedicament": 1, "dose": 1, "description": "" }
+  ]
+}
+
+### Lek ktory nie istnieje
+POST http://localhost:5109/api/prescriptions
+Content-Type: application/json
+
+{
+  "date": "2025-05-21T10:00:00",
+  "dueDate": "2025-06-21T10:00:00",
+  "doctorId": 1,
+  "patient": {
+    "firstName": "Test",
+    "lastName":  "Testowy",
+    "birthDate": "1990-01-01"
+  },
+  "medicaments": [
+    { "idMedicament": 999, "dose": 1, "description": "" }
+  ]
+}
+
